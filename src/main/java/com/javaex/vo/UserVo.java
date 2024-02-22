@@ -12,6 +12,16 @@ public class UserVo {
 		
 	}
 	
+	public UserVo(String id, String pw) {
+		this.id = id;
+		this.pw = pw;
+	}
+	
+	public UserVo(int no, String pw) {
+		this.no = no;
+		this.pw = pw;
+	}
+	
 	public UserVo(String id, String pw, String name, String gender) {
 		this.id = id;
 		this.pw = pw;
