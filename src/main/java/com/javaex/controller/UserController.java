@@ -117,8 +117,18 @@ public class UserController extends HttpServlet {
 		    
 		    UserDao userDao = new UserDao();
 		    userDao.userModify(no, id, password, name, gender);
+		    
+		    // 수정된 정보로 사용자 객체 업데이트
+		    UserVo modifiedUser = new UserVo(no, id, password, name, gender);
+
+		    // 세션에서 기존 사용자 정보 가져오기
+		    HttpSession session = request.getSession();
+		    UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		    // 세션에 수정된 사용자 정보 업데이트
+		    session.setAttribute("authUser", modifiedUser);
 			
-			WebUtil.forward(request, response, "/WEB-INF/views/user/loginForm.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/views/main/index.jsp");
 		}
 		
 		else {
